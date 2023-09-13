@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"sort"
 )
 
 func ConvertCSVToJSON(csvFilePath string, jsonFilePath string) error {
@@ -78,6 +79,7 @@ func ConvertJSONToCSV(jsonFilePath string, csvFilePath string) error {
 	for header := range jsonData[0] {
 		headers = append(headers, header)
 	}
+	sort.Strings(headers)
 	err = writer.Write(headers)
 	if err != nil {
 		log.Fatal(err)
